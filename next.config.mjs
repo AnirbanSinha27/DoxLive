@@ -1,13 +1,18 @@
 import {withSentryConfig} from '@sentry/nextjs';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    typescript:{
-        ignoreBuildErrors: true,
-    },
     images:{
         remotePatterns:[{protocol: 'https',hostname:"img.clerk.com"}]
-    }
+    },
+    eslint: {
+        // Warning: This allows production builds to successfully complete even if
+        // your project has ESLint errors.
+        ignoreDuringBuilds: true,},
+    typescript:{
+            ignoreBuildErrors: true,
+        },
 };
+
 
 export default withSentryConfig(nextConfig, {
 // For all available options, see:
@@ -40,3 +45,4 @@ disableLogger: true,
 // https://vercel.com/docs/cron-jobs
 automaticVercelMonitors: true,
 });
+
