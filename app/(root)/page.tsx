@@ -46,7 +46,7 @@ const Home = async() => {
             <ul className='document-ul'>
               {
                 roomDocuments.data.map(({id,metadata,createdAt}: Document)=> (
-                  <li className='document-list-item'>
+                  <li key={id} className='document-list-item'>
                     <Link href={`/documents/${id}`} className='flex flex-1 items-center gap-4'>
                     <div className='hidden rounded-md bg-dark-500 p-2 sm:block'>
                       <Image
