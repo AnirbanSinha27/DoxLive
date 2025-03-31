@@ -16,7 +16,12 @@ const Home = async() => {
   const clerkUser= await currentUser();
   if(!clerkUser) redirect('/sign-in');
 
-  const roomDocuments= await getDocuments(clerkUser.emailAddresses[0].emailAddress)
+  const roomDocuments= await getDocuments(clerkUser.emailAddresses[0].emailAddress);
+  interface Document {
+    id: string;
+    metadata: { title: string };
+    createdAt: string;
+  }
 
   return (
     <main className='home-container'>
@@ -40,7 +45,7 @@ const Home = async() => {
           </div>
             <ul className='document-ul'>
               {
-                roomDocuments.data.map(({id,metadata,createdAt}: any)=> (
+                roomDocuments.data.map(({id,metadata,createdAt}: Document)=> (
                   <li className='document-list-item'>
                     <Link href={`/documents/${id}`} className='flex flex-1 items-center gap-4'>
                     <div className='hidden rounded-md bg-dark-500 p-2 sm:block'>
